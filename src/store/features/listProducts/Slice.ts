@@ -19,6 +19,7 @@ export const listProductsSlice = createSlice({
   reducers: {
     setNewProduct: (state, action: PayloadAction<IProduct>) => {
       state.products.push(action.payload);
+      localStorage.setItem('products', JSON.stringify(state.products));
     },
     deleteProduct: (state, action: PayloadAction<string>) => {
       state.products = state.products.filter(
