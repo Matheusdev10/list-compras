@@ -15,17 +15,18 @@ export function FormListaCompras() {
   const duplicateProduct = () => toast('Produto já cadastrado');
   const productNull = () => toast('Por favor, preencha o nome do produto');
 
-  const { register, handleSubmit, reset, watch } = useForm<IFormListaCompras>();
-  const productWatch = watch('produto');
-  const findProduct = products.find((product) => product.name === productWatch);
+  const { register, handleSubmit, reset } = useForm<IFormListaCompras>();
   const onSubmit = ({ produto }: IFormListaCompras) => {
-    if (findProduct) {
-      duplicateProduct();
-    } else if (!productWatch) {
+    if (!produto) {
       productNull();
     } else {
-      productWatch && addNewProduct(produto);
-      reset();
+      const findProduct = products.find((product) => product.name === produto);
+      if (findProduct) {
+        duplicateProduct();
+      } else {
+        addNewProduct(produto);
+        reset();
+      }
     }
   };
 
