@@ -21,12 +21,11 @@ export function FormListaCompras() {
   const onSubmit = ({ produto }: IFormListaCompras) => {
     if (findProduct) {
       duplicateProduct();
+    } else if (!productWatch) {
+      productNull();
     } else {
       productWatch && addNewProduct(produto);
       reset();
-    }
-    if (!productWatch) {
-      productNull();
     }
   };
 
