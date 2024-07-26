@@ -1,10 +1,10 @@
 import { store } from '../../index';
-import { setNewProduct, deleteProduct } from './Slice';
+import { deleteProduct, IProduct, setNewProduct } from './Slice';
 
 const { dispatch } = store;
 
-export const addNewProduct = (data: string) => {
-  dispatch(setNewProduct({ id: data, name: data }));
+export const addNewProduct = (data: IProduct) => {
+  dispatch(setNewProduct(data));
 };
 
 export const removeProduct = (data: string) => {
